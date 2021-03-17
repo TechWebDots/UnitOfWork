@@ -1,0 +1,47 @@
+﻿@model Mvc4App.Models.Book  
+@{ 
+    ViewBag.Title = "Delete Book";  
+}  
+<div align ="center">  
+    <h3> Book Management </h3> <br/>  
+    @using(Html.BeginForm("DeleteBook", "Book", FormMethod.Post))  
+    {  
+        @Html.HiddenFor(e => e.BookId) 
+            <table border="1" cellpadding="10">  
+            <tr>  
+            <td colspan="2" align="center">  
+            <b>Delete Book </b>  
+        @if(ViewBag.Failed != null) { 
+            <span style ="color:red;"> @ViewBag.Failed </span>  
+            } </td> </tr> 
+                <tr>  
+            <td>  
+            @Html.LabelFor(e => e.BookTitle) </td> 
+                    <td>  
+            @Html.TextBoxFor(e => e.BookTitle, new{ @readonly="readonly" })
+        </td> </tr> <tr>  
+            <td>  
+            @Html.LabelFor(e => e.Standard) </td> 
+            <td>  
+            @Html.TextBoxFor(e => e.Standard, new { @readonly="readonly" })
+        </td> </tr> 
+                <tr>  
+            <td>  
+            @Html.LabelFor(e => e.Subject) </td> 
+        <td>  
+            @Html.TextBoxFor(e => e.Subject, new { @readonly="readonly" }) 
+        </td></tr> 
+                <tr>  
+            <td>  
+            @Html.LabelFor(e => e.Author) </td> 
+        <td>  
+            @Html.TextBoxFor(e => e.Author, new { @readonly="readonly" }) 
+        </td></tr>
+        <tr>  
+            <td colspan="2" align="center">
+                <input type="submit" value="Delete" /><br /> 
+                @Html.ActionLink("Go Back", "Index", "Book")
+            </td>
+        </tr> 
+        </table>  
+    } </div> 

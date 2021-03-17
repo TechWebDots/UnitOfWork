@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Mvc4App.Models.Student>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div align="center">
+    <h3> Student(s) Data Loaded From Database</h3>
+    <table cellpadding="5" border="1">
+        <tr style="background-color:#808080; color:white;">
+            <td>Id </td>
+            <td>Name </td>
+            <td>Email </td>
+        </tr>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.Name</td>
+                <td>@student.Email</td>
+            </tr>
+        }
+    </table>
+    <span> <a href="@Url.Action("Index","Book")">Go Back</a></span>
+    
+    <h3> Student(s) Data Loaded From API </h3>
+    <table cellpadding="5" border="1">
+        <tr style="background-color:#808080; color:white;">
+            <td>Name </td>
+        </tr>        
+        <tr>
+            <td><div id="students"></div></td>
+        </tr>        
+    </table>
+</div>
+<script>
+    var uri = 'https://localhost:44314/api/student';
+    $(document).ready(function () {
+        $.getJSON(uri).done(function (data) {
+            $.each(data, function (key, item) {
+                $('<p>', { text: item.Name }).appendTo($('#students'));
+            });
+        });
+    });
+</script>

@@ -1,0 +1,37 @@
+﻿@model IEnumerable < Mvc4App.Models.Book >   
+    @{  
+        ViewBag.Title = "Index";  
+    } 
+<div align="center">
+    <h2> Book Management </h2>
+    <h3> Books </h3>
+    <table cellpadding="5" border="1">
+        <tr style="background-color:#808080; color:white;">
+            <td>Book Id</td>
+            <td>Book Title</td>
+            <td>Standard</td>
+            <td>Subject</td>
+            <td>Author</td>
+            <td>Action</td>
+        </tr>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.BookId </td>
+                <td>@book.BookTitle</td>
+                <td>@book.Standard </td>
+                <td>@book.Subject </td>
+                <td>@book.Author </td>
+                <td>
+                    <a href="@Url.Action("EditBook", "Book", new { @BookId = book.BookId })"> Edit | </a>
+                    <a href="@Url.Action("DeleteBook", "Book", new { @BookId = book.BookId })"> Delete </a>
+                </td>
+            </tr>
+
+        }
+    </table>
+    <br />
+    <span> <a href="@Url.Action("AddBook","Book")">Add Book</a></span>
+    <br />
+    <span> <a href="@Url.Action("Index","Student")">Go To Students</a></span>
+</div>  

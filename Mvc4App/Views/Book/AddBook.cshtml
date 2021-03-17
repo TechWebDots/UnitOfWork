@@ -1,0 +1,46 @@
+﻿@model Mvc4App.Models.Book  
+@{  
+    ViewBag.Title ="AddBook";  
+}  
+  
+<div align="center">  
+    <h3>Book Management</h3><br/>  
+    <b>Add New Book</b><br/>  
+    <br/>   
+    @using(Html.BeginForm("AddBook","Book",FormMethod.Post)) { 
+        <table>  
+            <tr><td colspan ="2">  
+            @if (ViewBag.Failed != null) {
+                <span style="color:red;">@ViewBag.Failed</span>  
+            } </td></tr> 
+            <tr>  
+            <td>@Html.LabelFor(e => e.BookTitle) </td> 
+            <td>  
+            @Html.TextBoxFor(e => e.BookTitle) <br/>  
+            @Html.ValidationMessageFor(e => e.BookTitle, null, new {style = "color:red;"}) </td></tr>
+            <tr>  
+            <td>@Html.LabelFor(e => e.Standard) </td>
+            <td>  
+            @Html.TextBoxFor(e => e.Standard) <br/>  
+            @Html.ValidationMessageFor(e => e.Standard, null, new {style = "color:red;"}) </td></tr> 
+            <tr>  
+            <td>@Html.LabelFor(e => e.Subject) </td> 
+            <td>  
+            @Html.TextBoxFor(e => e.Subject) <br/>  
+            @Html.ValidationMessageFor(e => e.Subject, null, new {style = "color:red;"}) </td></tr> 
+            <tr>  
+            <td>@Html.LabelFor(e => e.Author) </td> 
+            <td>  
+            @Html.TextBoxFor(e => e.Author) <br/>  
+            @Html.ValidationMessageFor(e => e.Author, null, new {style = "color:red;"}) </td></tr> 
+            <tr>  
+            <tr>  
+                <td colspan="2" align="center">
+                    <br />
+                    <input type="submit" value="Submit" />
+                    @Html.ActionLink("Go Back", "Index", "Book")
+                </td> 
+            </tr>                 
+        </table>  
+    }
+</div> 
