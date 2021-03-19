@@ -1,4 +1,5 @@
-﻿using Mvc4App.Repository;
+﻿using Mvc4App.DataAccess;
+using Mvc4App.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +10,21 @@ namespace Mvc4App.Controllers
 {
     public class StudentController : Controller
     {
-        private IStudentRepository _studentRepository;
+        //private IStudentRepository _studentRepository;
+        private IUnitOfWork unitOfWork;
 
-        public StudentController()
+        //public StudentController()
+        //{
+        //    _studentRepository = new StudentRepository(new DataAccess.AppDbContext());
+        //}
+        public StudentController(IUnitOfWork _unitOfWork)
         {
-            _studentRepository = new StudentRepository(new DataAccess.AppDbContext());
-        }
-        public StudentController(IStudentRepository studentRepository)
-        {
-            _studentRepository = studentRepository;
+            unitOfWork = _unitOfWork;
         }
 
         public ActionResult Index()
         {
-            var model = _studentRepository.GetAllStudents();
+            var model = unitOfWork.StudentRepository.GetAll();
             return View(model);
         }
 

@@ -22,6 +22,10 @@ namespace Mvc4App
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Bootstrapper.Initialise();
+
+            //AppConfig.Configure();
         }
     }
 }

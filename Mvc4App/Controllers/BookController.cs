@@ -12,15 +12,23 @@ namespace Mvc4App.Controllers
     public class BookController : Controller
     {
         //private IBookRepository _bookRepository;
-        private UnitOfWork unitOfWork = new UnitOfWork();
-        public BookController()
+        ///private UnitOfWork unitOfWork = new UnitOfWork();
+        private IUnitOfWork unitOfWork;
+
+        //public BookController()
+        //{
+        //    _bookRepository = new BookRepository(new DataAccess.AppDbContext());
+        //}
+        //public BookController(IBookRepository bookRepository)
+        //{
+        //    _bookRepository = bookRepository;
+        //}
+
+        public BookController(IUnitOfWork _unitOfWork)
         {
-            //_bookRepository = new BookRepository(new DataAccess.AppDbContext());
+            unitOfWork = _unitOfWork;
         }
-        public BookController(IBookRepository bookRepository)
-        {
-            //_bookRepository = bookRepository;
-        }
+
         public ActionResult Index()
         {            
             //var model = _bookRepository.GetAllBooks();
